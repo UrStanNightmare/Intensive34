@@ -13,6 +13,7 @@ task1doc/
 *.iws
 *.iml
 *.ipr
+.idea/
 
 ### Eclipse ###
 .apt_generated
