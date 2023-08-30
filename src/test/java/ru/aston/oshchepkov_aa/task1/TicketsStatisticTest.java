@@ -16,6 +16,33 @@ import java.util.StringTokenizer;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class TicketsStatisticTest {
+    private CinemaTicket createDefaultCinemaTicket() {
+        var id = 0;
+        var filmName = "TestFilm";
+        var rawPrice = BigDecimal.valueOf(500);
+        var ticketType = TicketType.BASIC;
+        var genre = Genre.ACTION;
+
+        var user = new User("Vasya", "Pupkin", 18);
+        return new CinemaTicket(id, user, rawPrice, filmName, ticketType, genre);
+    }
+
+    private TheaterTicket createDefaultTheaterTicket() {
+        var id = 0;
+        var playName = "TestPlay";
+        var rawPrice = BigDecimal.valueOf(500);
+        var playStyle = PlayStyle.MODERN;
+
+        var user = new User("Vasya", "Pupkin", 18);
+        return new TheaterTicket(id, user, rawPrice, playName, playStyle);
+    }
+
+    private void assertThatStringContainsSequences(String testString, List<String> checkValues) {
+        assertThat(testString)
+                .as("Must be one line with correct data")
+                .containsSequence(checkValues);
+    }
+
     @Test
     void test_statistics_when_ticket_list_is_empty() {
         var statistics = new TicketsStatistic(new ArrayList<>());
@@ -31,54 +58,42 @@ class TicketsStatisticTest {
 
     @Test
     void test_statistics_with_one_cinema_ticket() {
-        var id = 0;
-        var filmName = "TestFilm";
-        var rawPrice = BigDecimal.valueOf(500);
-        var ticketType = TicketType.BASIC;
-        var genre = Genre.ACTION;
+        var ticket = createDefaultCinemaTicket();
+        var statistics = new TicketsStatistic(List.of(ticket));
 
-        var user = new User("Vasya", "Pupkin", 18);
-        var cinemaTicket = new CinemaTicket(id, user, rawPrice, filmName, ticketType, genre);
-
-        var statistics = new TicketsStatistic(List.of(cinemaTicket));
-
-        assertThat(cinemaTicket.getDiscountPercent())
+        assertThat(ticket.getDiscountPercent())
                 .as("No discount expected.")
                 .isEqualTo(BigDecimal.ZERO);
 
         assertThat(statistics.calculateTotalPrice())
                 .as("Total price must be equal to rawPrice. No discount expected.")
-                .isEqualTo(rawPrice);
+                .isEqualTo(ticket.getRawPrice());
 
-        assertThat(statistics.toString())
-                .as("Must be one line with correct data")
-                .containsSequence("CinemaTicket")
-                .containsSequence("id=" + id)
-                .containsSequence("name='" + user.getName())
-                .containsSequence("surname='" + user.getSurname())
-                .containsSequence("age=" + user.getAge())
-                .containsSequence("rawPrice=" + rawPrice)
-                .containsSequence("filmName='" + filmName)
-                .containsSequence("genre=" + genre)
-                .containsSequence("ticketType=" + ticketType);
+        assertThatStringContainsSequences(statistics.toString(),
+                List.of("CinemaTicket",
+                        "id=" + ticket.getId(),
+                        "name='" + ticket.getUser().getName(),
+                        "surname='" + ticket.getUser().getSurname(),
+                        "age=" + ticket.getUser().getAge(),
+                        "rawPrice=" + ticket.getRawPrice(),
+                        "filmName='" + ticket.getFilmName(),
+                        "genre=" + ticket.getGenre(),
+                        "ticketType=" + ticket.getTicketType())
+        );
     }
 
     @Test
     void test_statistics_with_one_cinema_ticket_with_genre_discount() {
-        var id = 0;
-        var filmName = "TestFilm";
-        var rawPrice = BigDecimal.valueOf(1000);
-        var ticketType = TicketType.BASIC;
-        var genre = Genre.MYSTERY;
-
-        var user = new User("Vasya", "Pupkin", 18);
-        var cinemaTicket = new CinemaTicket(id, user, rawPrice, filmName, ticketType, genre);
-        var statistics = new TicketsStatistic(List.of(cinemaTicket));
+        var ticket = createDefaultCinemaTicket();
+        ticket.setGenre(Genre.MYSTERY);
 
         var expectedDiscount = BigDecimal.valueOf(0.1);
-        var expectedPrice = rawPrice.multiply(BigDecimal.ONE.subtract(expectedDiscount));
+        var expectedPrice = ticket.getRawPrice()
+                .multiply(BigDecimal.ONE.subtract(expectedDiscount));
 
-        assertThat(cinemaTicket.getDiscountPercent())
+        var statistics = new TicketsStatistic(List.of(ticket));
+
+        assertThat(ticket.getDiscountPercent())
                 .as("Discount expected.")
                 .isEqualTo(expectedDiscount);
 
@@ -86,37 +101,32 @@ class TicketsStatisticTest {
                 .as("Discount expected.")
                 .isEqualTo(expectedPrice);
 
-        assertThat(statistics.toString())
-                .as("Must be one line with correct data")
-                .containsSequence("CinemaTicket")
-                .containsSequence("id=" + id)
-                .containsSequence("name='" + user.getName())
-                .containsSequence("surname='" + user.getSurname())
-                .containsSequence("age=" + user.getAge())
-                .containsSequence("rawPrice=" + rawPrice)
-                .containsSequence("filmName='" + filmName)
-                .containsSequence("genre=" + genre)
-                .containsSequence("ticketType=" + ticketType);
+        assertThatStringContainsSequences(statistics.toString(),
+                List.of("CinemaTicket",
+                        "id=" + ticket.getId(),
+                        "name='" + ticket.getUser().getName(),
+                        "surname='" + ticket.getUser().getSurname(),
+                        "age=" + ticket.getUser().getAge(),
+                        "rawPrice=" + ticket.getRawPrice(),
+                        "filmName='" + ticket.getFilmName(),
+                        "genre=" + ticket.getGenre(),
+                        "ticketType=" + ticket.getTicketType())
+        );
     }
 
     @Test
     void test_statistics_with_one_cinema_ticket_with_genre_discount_and_vip_ticket_type() {
-        var id = 0;
-        var filmName = "TestFilm";
-        var rawPrice = BigDecimal.valueOf(1000);
-        var ticketType = TicketType.VIP;
-        var genre = Genre.MYSTERY;
-
-        var user = new User("Vasya", "Pupkin", 18);
-        var cinemaTicket = new CinemaTicket(id, user, rawPrice, filmName, ticketType, genre);
-        var statistics = new TicketsStatistic(List.of(cinemaTicket));
+        var ticket = createDefaultCinemaTicket();
+        ticket.setGenre(Genre.MYSTERY);
+        ticket.setTicketType(TicketType.VIP);
+        var statistics = new TicketsStatistic(List.of(ticket));
 
         var expectedDiscount = BigDecimal.valueOf(0.1);
-        var expectedPrice = rawPrice
+        var expectedPrice = ticket.getRawPrice()
                 .multiply(BigDecimal.ONE.subtract(expectedDiscount))
-                .multiply(ticketType.getCostMultiplier());
+                .multiply(ticket.getTicketType().getCostMultiplier());
 
-        assertThat(cinemaTicket.getDiscountPercent())
+        assertThat(ticket.getDiscountPercent())
                 .as("Discount expected.")
                 .isEqualTo(expectedDiscount);
 
@@ -124,66 +134,55 @@ class TicketsStatisticTest {
                 .as("Discount expected. Vip ticket costs more than common. ")
                 .isEqualTo(expectedPrice);
 
-        assertThat(statistics.toString())
-                .as("Must be one line with correct data")
-                .containsSequence("CinemaTicket")
-                .containsSequence("id=" + id)
-                .containsSequence("name='" + user.getName())
-                .containsSequence("surname='" + user.getSurname())
-                .containsSequence("age=" + user.getAge())
-                .containsSequence("rawPrice=" + rawPrice)
-                .containsSequence("filmName='" + filmName)
-                .containsSequence("genre=" + genre)
-                .containsSequence("ticketType=" + ticketType);
+        assertThatStringContainsSequences(statistics.toString(),
+                List.of("CinemaTicket",
+                        "id=" + ticket.getId(),
+                        "name='" + ticket.getUser().getName(),
+                        "surname='" + ticket.getUser().getSurname(),
+                        "age=" + ticket.getUser().getAge(),
+                        "rawPrice=" + ticket.getRawPrice(),
+                        "filmName='" + ticket.getFilmName(),
+                        "genre=" + ticket.getGenre(),
+                        "ticketType=" + ticket.getTicketType())
+        );
     }
 
     @Test
     void test_statistics_with_one_theater_ticket() {
-        var id = 0;
-        var playName = "TestPlay";
-        var rawPrice = BigDecimal.valueOf(500);
-        var playStyle = PlayStyle.MODERN;
+        var ticket = createDefaultTheaterTicket();
+        var statistics = new TicketsStatistic(List.of(ticket));
 
-        var user = new User("Vasya", "Pupkin", 18);
-        var cinemaTicket = new TheaterTicket(id, user, rawPrice, playName, playStyle);
-
-        var statistics = new TicketsStatistic(List.of(cinemaTicket));
-
-        assertThat(cinemaTicket.getDiscountPercent())
+        assertThat(ticket.getDiscountPercent())
                 .as("No discount expected.")
                 .isEqualTo(BigDecimal.ZERO);
 
         assertThat(statistics.calculateTotalPrice())
                 .as("Total price must be equal to rawPrice. No discount expected.")
-                .isEqualTo(rawPrice);
+                .isEqualTo(ticket.getRawPrice());
 
-        assertThat(statistics.toString())
-                .as("Must be one line with correct data")
-                .containsSequence("TheaterTicket")
-                .containsSequence("id=" + id)
-                .containsSequence("name='" + user.getName())
-                .containsSequence("surname='" + user.getSurname())
-                .containsSequence("age=" + user.getAge())
-                .containsSequence("rawPrice=" + rawPrice)
-                .containsSequence("playTitle='" + playName)
-                .containsSequence("playStyle=" + playStyle);
+        assertThatStringContainsSequences(statistics.toString(),
+                List.of("TheaterTicket",
+                        "id=" + ticket.getId(),
+                        "name='" + ticket.getUser().getName(),
+                        "surname='" + ticket.getUser().getSurname(),
+                        "age=" + ticket.getUser().getAge(),
+                        "rawPrice=" + ticket.getRawPrice(),
+                        "playTitle='" + ticket.getPlayTitle(),
+                        "playStyle=" + ticket.getPlayStyle())
+        );
     }
 
     @Test
     void test_statistics_with_one_theater_ticket_with_retirement_discount() {
-        var id = 0;
-        var playName = "TestPlay";
-        var rawPrice = BigDecimal.valueOf(500);
-        var playStyle = PlayStyle.MODERN;
-        var user = new User("Vasya", "Pensioner", 99);
-        var cinemaTicket = new TheaterTicket(id, user, rawPrice, playName, playStyle);
-        var statistics = new TicketsStatistic(List.of(cinemaTicket));
+        var ticket = createDefaultTheaterTicket();
+        ticket.getUser().setAge(99);
+        var statistics = new TicketsStatistic(List.of(ticket));
 
         var expectedDiscount = BigDecimal.valueOf(0.5);
-        var expectedPrice = rawPrice.multiply(
-                BigDecimal.ONE.subtract(cinemaTicket.getDiscountPercent()));
+        var expectedPrice = ticket.getRawPrice().multiply(
+                BigDecimal.ONE.subtract(ticket.getDiscountPercent()));
 
-        assertThat(cinemaTicket.getDiscountPercent())
+        assertThat(ticket.getDiscountPercent())
                 .as("Retirement discount expected.")
                 .isEqualTo(expectedDiscount);
 
@@ -191,60 +190,43 @@ class TicketsStatisticTest {
                 .as("Total price must be equal to rawPrice. No discount expected.")
                 .isEqualTo(expectedPrice);
 
-        assertThat(statistics.toString())
-                .as("Must be one line with correct data")
-                .containsSequence("TheaterTicket")
-                .containsSequence("id=" + id)
-                .containsSequence("name='" + user.getName())
-                .containsSequence("surname='" + user.getSurname())
-                .containsSequence("age=" + user.getAge())
-                .containsSequence("rawPrice=" + rawPrice)
-                .containsSequence("playTitle='" + playName)
-                .containsSequence("playStyle=" + playStyle);
+        assertThatStringContainsSequences(statistics.toString(),
+                List.of("TheaterTicket",
+                        "id=" + ticket.getId(),
+                        "name='" + ticket.getUser().getName(),
+                        "surname='" + ticket.getUser().getSurname(),
+                        "age=" + ticket.getUser().getAge(),
+                        "rawPrice=" + ticket.getRawPrice(),
+                        "playTitle='" + ticket.getPlayTitle(),
+                        "playStyle=" + ticket.getPlayStyle())
+        );
     }
 
     @Test
-    void test_statistics_total_price_different_ticket_types(){
-        var id = 0;
-        var filmName = "TestFilm";
-        var rawPrice = BigDecimal.valueOf(500);
-        var ticketType = TicketType.BASIC;
-        var genre = Genre.ACTION;
+    void test_statistics_total_price_different_ticket_types() {
+        var cinemaTicket = createDefaultCinemaTicket();
+        var theaterTicket = createDefaultTheaterTicket();
+        var statistics = new TicketsStatistic(List.of(cinemaTicket, theaterTicket));
 
-        var playTitle = "TestPlay";
-        var playStyle = PlayStyle.MODERN;
-
-        var user = new User("Vasya", "Pupkin", 18);
-        var cinemaTicket = new CinemaTicket(id++, user, rawPrice, filmName, ticketType, genre);
-
-        var anotherTicket = new TheaterTicket(id, user, rawPrice, playTitle, playStyle);
-
-        var statistics = new TicketsStatistic(List.of(cinemaTicket, anotherTicket));
+        var expectedPrice = cinemaTicket.getFinalPrice().add(theaterTicket.getFinalPrice());
 
         assertThat(statistics.calculateTotalPrice())
                 .as("Should sum correctly")
-                .isEqualTo(rawPrice.multiply(BigDecimal.valueOf(2)));
+                .isEqualTo(expectedPrice);
     }
 
     @Test
-    void test_statistics_sorting_order(){
-        var id = 0;
-        var filmName = "TestFilm";
-        var rawPrice = BigDecimal.valueOf(500);
-        var ticketType = TicketType.BASIC;
-        var genre = Genre.ACTION;
-
-        var playTitle = "TestPlay";
-        var playStyle = PlayStyle.MODERN;
-
+    void test_statistics_sorting_order() {
         var user1 = new User("Avraam", "Pavlov", 24);
         var user2 = new User("Daniel", "Gorockhov", 37);
 
-        var cinemaTicket = new CinemaTicket(id++, user1, rawPrice, filmName, ticketType, genre);
-        var theaterTicket =  new TheaterTicket(id, user2, rawPrice, playTitle, playStyle);
+        var cinemaTicket = createDefaultCinemaTicket();
+        cinemaTicket.setUser(user1);
+        var theaterTicket = createDefaultTheaterTicket();
+        theaterTicket.setId(1);
+        theaterTicket.setUser(user2);
 
         var statistics = new TicketsStatistic(List.of(cinemaTicket, theaterTicket));
-
         var stringTokenizer = new StringTokenizer(statistics.toString(), System.lineSeparator());
 
         assertThat(stringTokenizer.countTokens())
