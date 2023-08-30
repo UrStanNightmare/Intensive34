@@ -1,12 +1,5 @@
 # Intensive-34 tasks:
-<style>
-    .details_header{
-        font-size: 25px;
-        font-weight: bold;
-    }
-</style>
-
-<details>
+ <details>
 <summary class="details_header">Task 1</summary>
 
 Предметная область - Сервис продажи билетов кино \ театр.
