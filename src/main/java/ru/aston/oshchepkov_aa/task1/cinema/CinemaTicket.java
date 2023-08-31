@@ -62,10 +62,10 @@ public class CinemaTicket extends Ticket {
     public BigDecimal getDiscountPercent() {
         switch (genre) {
             case MYSTERY, DRAMA -> {
-                return BigDecimal.valueOf(0.1);
+                return new BigDecimal("0.1");
             }
             case COMEDY -> {
-                return BigDecimal.valueOf(0.08);
+                return new BigDecimal("0.08");
             }
             default -> {
                 return BigDecimal.ZERO;

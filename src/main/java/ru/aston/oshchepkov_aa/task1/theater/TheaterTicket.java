@@ -46,7 +46,7 @@ public class TheaterTicket extends Ticket {
     @Override
     public BigDecimal getDiscountPercent() {
         if (user.getAge() >= RETIREMENT_AGE) {
-            return BigDecimal.valueOf(0.5);
+            return new BigDecimal("0.5");
         }
         return BigDecimal.ZERO;
     }

@@ -19,7 +19,7 @@ class TicketsStatisticTest {
     private CinemaTicket createDefaultCinemaTicket() {
         var id = 0;
         var filmName = "TestFilm";
-        var rawPrice = BigDecimal.valueOf(500);
+        var rawPrice = new BigDecimal("500");
         var ticketType = TicketType.BASIC;
         var genre = Genre.ACTION;
 
@@ -30,7 +30,7 @@ class TicketsStatisticTest {
     private TheaterTicket createDefaultTheaterTicket() {
         var id = 0;
         var playName = "TestPlay";
-        var rawPrice = BigDecimal.valueOf(500);
+        var rawPrice = new BigDecimal("500");
         var playStyle = PlayStyle.MODERN;
 
         var user = new User("Vasya", "Pupkin", 18);
@@ -87,7 +87,7 @@ class TicketsStatisticTest {
         var ticket = createDefaultCinemaTicket();
         ticket.setGenre(Genre.MYSTERY);
 
-        var expectedDiscount = BigDecimal.valueOf(0.1);
+        var expectedDiscount = new BigDecimal("0.1");
         var expectedPrice = ticket.getRawPrice()
                 .multiply(BigDecimal.ONE.subtract(expectedDiscount));
 
@@ -121,7 +121,7 @@ class TicketsStatisticTest {
         ticket.setTicketType(TicketType.VIP);
         var statistics = new TicketsStatistic(List.of(ticket));
 
-        var expectedDiscount = BigDecimal.valueOf(0.1);
+        var expectedDiscount = new BigDecimal("0.1");
         var expectedPrice = ticket.getRawPrice()
                 .multiply(BigDecimal.ONE.subtract(expectedDiscount))
                 .multiply(ticket.getTicketType().getCostMultiplier());
@@ -178,7 +178,7 @@ class TicketsStatisticTest {
         ticket.getUser().setAge(99);
         var statistics = new TicketsStatistic(List.of(ticket));
 
-        var expectedDiscount = BigDecimal.valueOf(0.5);
+        var expectedDiscount = new BigDecimal("0.5");
         var expectedPrice = ticket.getRawPrice().multiply(
                 BigDecimal.ONE.subtract(ticket.getDiscountPercent()));
 

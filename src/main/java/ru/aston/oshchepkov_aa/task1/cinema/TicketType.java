@@ -7,8 +7,8 @@ import java.math.BigDecimal;
  */
 public enum TicketType {
     BASIC(BigDecimal.ONE),
-    VIP (BigDecimal.valueOf(1.1)),
-    ULTIMATE(BigDecimal.valueOf(1.4));
+    VIP (new BigDecimal("1.1")),
+    ULTIMATE(new BigDecimal("1.4"));
 
     private final BigDecimal costMultiplier;
 
