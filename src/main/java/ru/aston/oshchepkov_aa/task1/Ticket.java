@@ -1,8 +1,13 @@
 package ru.aston.oshchepkov_aa.task1;
 
+import ru.aston.oshchepkov_aa.task1.exception.ErrorCode;
+import ru.aston.oshchepkov_aa.task1.exception.TicketException;
+
 import java.math.BigDecimal;
+import java.util.Objects;
 import java.util.StringJoiner;
 
+import static java.util.Objects.isNull;
 /**
  * Abstract ticket class.
  * Has basic data for ticket.
@@ -16,6 +21,18 @@ public abstract class Ticket implements Discountable {
         this.id = id;
         this.user = user;
         this.rawPrice = rawPrice;
+
+        validateBasicData();
+    }
+
+    private void validateBasicData(){
+        if (isNull(user)){
+            throw new TicketException(ErrorCode.USER_NOT_SPECIFIED);
+        }
+
+        if (BigDecimal.ZERO.compareTo(rawPrice) > 0){
+            throw new TicketException(ErrorCode.NEGATIVE_COST);
+        }
     }
 
     public int getId() {
