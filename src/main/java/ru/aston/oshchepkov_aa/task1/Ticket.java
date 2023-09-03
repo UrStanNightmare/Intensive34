@@ -16,6 +16,18 @@ public abstract class Ticket implements Discountable {
         this.id = id;
         this.user = user;
         this.rawPrice = rawPrice;
+
+        validateBasicData();
+    }
+
+    private void validateBasicData(){
+        if (user == null){
+            throw new TicketException(ErrorCode.USER_NOT_SPECIFIED);
+        }
+
+        if (BigDecimal.ZERO.compareTo(rawPrice) > 0){
+            throw new TicketException(ErrorCode.NEGATIVE_COST);
+        }
     }
 
     public int getId() {
