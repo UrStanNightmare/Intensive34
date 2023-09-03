@@ -8,7 +8,6 @@ import java.util.Objects;
 import java.util.StringJoiner;
 
 import static java.util.Objects.isNull;
-
 /**
  * Abstract ticket class.
  * Has basic data for ticket.
