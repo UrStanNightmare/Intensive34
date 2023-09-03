@@ -20,9 +20,16 @@ class CollectionsTest {
 
         var copyList = new ArrayList<>(list);
 
+        var capacity = 10;
+        var anotherNewList = new ArrayList<>(capacity);
+        anotherNewList.addAll(list);
+
         assertThat(list)
                 .isEqualTo(defaultList);
         assertThat(copyList)
+                .isEqualTo(defaultList);
+
+        assertThat(anotherNewList)
                 .isEqualTo(defaultList);
     }
 
@@ -52,6 +59,12 @@ class CollectionsTest {
         map.put("c", 2);
 
         var copyMap = new HashMap<>(defaultMap);
+
+        var cap = 32;
+        var loadFactor = 1f;
+
+        var anotherMap = new HashMap<>(cap, loadFactor);
+        var anotherAnotherMap = new HashMap<>(cap);
 
         assertThat(map)
                 .isEqualTo(defaultMap);

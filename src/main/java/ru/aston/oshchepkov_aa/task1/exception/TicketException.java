@@ -1,4 +1,4 @@
-package ru.aston.oshchepkov_aa.task1;
+package ru.aston.oshchepkov_aa.task1.exception;
 
 public class TicketException extends RuntimeException {
     private final ErrorCode errorCode;

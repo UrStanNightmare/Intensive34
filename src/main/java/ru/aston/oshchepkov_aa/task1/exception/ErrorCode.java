@@ -1,4 +1,4 @@
-package ru.aston.oshchepkov_aa.task1;
+package ru.aston.oshchepkov_aa.task1.exception;
 
 public enum ErrorCode {
     UNDEFINED(0, "ERROR CODE NOT SPECIFIED"),

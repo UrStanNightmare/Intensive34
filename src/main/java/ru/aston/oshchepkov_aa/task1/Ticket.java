@@ -1,7 +1,13 @@
 package ru.aston.oshchepkov_aa.task1;
 
+import ru.aston.oshchepkov_aa.task1.exception.ErrorCode;
+import ru.aston.oshchepkov_aa.task1.exception.TicketException;
+
 import java.math.BigDecimal;
+import java.util.Objects;
 import java.util.StringJoiner;
+
+import static java.util.Objects.isNull;
 
 /**
  * Abstract ticket class.
@@ -21,7 +27,7 @@ public abstract class Ticket implements Discountable {
     }
 
     private void validateBasicData(){
-        if (user == null){
+        if (isNull(user)){
             throw new TicketException(ErrorCode.USER_NOT_SPECIFIED);
         }
 

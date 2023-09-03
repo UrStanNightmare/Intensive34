@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import ru.aston.oshchepkov_aa.task1.cinema.CinemaTicket;
 import ru.aston.oshchepkov_aa.task1.cinema.Genre;
 import ru.aston.oshchepkov_aa.task1.cinema.TicketType;
+import ru.aston.oshchepkov_aa.task1.exception.ErrorCode;
+import ru.aston.oshchepkov_aa.task1.exception.TicketException;
 import ru.aston.oshchepkov_aa.task1.theater.PlayStyle;
 import ru.aston.oshchepkov_aa.task1.theater.TheaterTicket;
 
