@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>D:/JavaProjects/Aston/Intencives/Intencive34/src/main/java/ru/aston/oshchepkov_aa/task4</OriginalElement>
+  <nodes>
+    <node x="-2932.5551123540363" y="-1516.098734177215">ru.aston.oshchepkov_aa.task4.order.OrderService</node>
+    <node x="-1936.5463914238037" y="-1480.098734177215">ru.aston.oshchepkov_aa.task4.user.UserService</node>
+    <node x="-2491.94852320675" y="-1197.098734177215">ru.aston.oshchepkov_aa.task4.user.UserRepositoryImpl</node>
+    <node x="-1984.94852320675" y="-276.49704641350183">ru.aston.oshchepkov_aa.task4.cli.command.UserById</node>
+    <node x="-1622.94852320675" y="-264.49704641350183">ru.aston.oshchepkov_aa.task4.cli.command.GetAllUsers</node>
+    <node x="-1817.94852320675" y="-264.49704641350183">ru.aston.oshchepkov_aa.task4.cli.command.GetAllOrders</node>
+    <node x="-802.5839662447256" y="-1497.098734177215">ru.aston.oshchepkov_aa.task4.user.User</node>
+    <node x="-1966.0852320675094" y="-525.313292827004">ru.aston.oshchepkov_aa.task4.DbApplication</node>
+    <node x="-3016.3051123540363" y="-1233.098734177215">ru.aston.oshchepkov_aa.task4.order.OrderServiceImpl</node>
+    <node x="-1272.1679324894512" y="-312.49704641350183">ru.aston.oshchepkov_aa.task4.cli.command.CreateOrder</node>
+    <node x="-716.5839662447256" y="-312.49704641350183">ru.aston.oshchepkov_aa.task4.cli.command.CreateUser</node>
+    <node x="-2343.94852320675" y="-276.49704641350183">ru.aston.oshchepkov_aa.task4.cli.command.UserOrders</node>
+    <node x="-1091.1679324894512" y="-312.49704641350183">ru.aston.oshchepkov_aa.task4.cli.command.UpdateOrder</node>
+    <node x="-2684.657825532331" y="-1725.098734177215">ru.aston.oshchepkov_aa.task4.DaoDataEntityLayer</node>
+    <node x="-2166.5551123540363" y="-1414.598734177215">ru.aston.oshchepkov_aa.task4.user.UserRepository</node>
+    <node x="-2158.94852320675" y="-276.49704641350183">ru.aston.oshchepkov_aa.task4.cli.command.OrderById</node>
+    <node x="-440.0419831223628" y="-1497.098734177215">ru.aston.oshchepkov_aa.task4.user.UserSql</node>
+    <node x="-260.58396624472516" y="-312.49704641350183">ru.aston.oshchepkov_aa.task4.cli.command.AssignOrderToUser</node>
+    <node x="-566.3504135021094" y="-793.598734177215">ru.aston.oshchepkov_aa.task4.user.UserMapper</node>
+    <node x="-897.5839662447256" y="-312.49704641350183">ru.aston.oshchepkov_aa.task4.cli.command.UpdateUser</node>
+    <node x="-2559.94852320675" y="-276.49704641350183">ru.aston.oshchepkov_aa.task4.cli.command.DeleteUserById</node>
+    <node x="-521.0839662447254" y="-312.49704641350183">ru.aston.oshchepkov_aa.task4.cli.command.UnAssignOrderToUser</node>
+    <node x="-3355.3051123540363" y="-1233.098734177215">ru.aston.oshchepkov_aa.task4.order.OrderRepositoryImpl</node>
+    <node x="-2782.94852320675" y="-276.49704641350183">ru.aston.oshchepkov_aa.task4.cli.command.DeleteOrderById</node>
+    <node x="-1452.7940928270027" y="-597.313292827004">ru.aston.oshchepkov_aa.task4.utils.PropertyReader</node>
+    <node x="-1623.2388185653995" y="-1497.098734177215">ru.aston.oshchepkov_aa.task4.order.OrderSql</node>
+    <node x="-2598.5551123540363" y="-1480.098734177215">ru.aston.oshchepkov_aa.task4.cli.exception.ValidationException</node>
+    <node x="-2158.94852320675" y="-1197.098734177215">ru.aston.oshchepkov_aa.task4.user.UserServiceImpl</node>
+    <node x="-1559.1679324894512" y="-793.598734177215">ru.aston.oshchepkov_aa.task4.order.OrderMapper</node>
+    <node x="-1299.6679324894512" y="-1281.098734177215">ru.aston.oshchepkov_aa.task4.order.Order</node>
+    <node x="-1765.123206751054" y="-585.313292827004">ru.aston.oshchepkov_aa.task4.cli.CommandLineRunner</node>
+    <node x="-3267.8051123540363" y="-1456.098734177215">ru.aston.oshchepkov_aa.task4.order.OrderRepository</node>
+    <node x="-2488.166546462564" y="-866.0987341772147">ru.aston.oshchepkov_aa.task4.DbService</node>
+    <node x="-1434.94852320675" y="-264.49704641350183">ru.aston.oshchepkov_aa.task4.cli.command.Terminate</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="ru.aston.oshchepkov_aa.task4.order.OrderRepositoryImpl" target="ru.aston.oshchepkov_aa.task4.order.OrderRepository" relationship="REALIZATION">
+      <point x="85.0" y="-152.5" />
+      <point x="0.0" y="55.5" />
+    </edge>
+    <edge source="ru.aston.oshchepkov_aa.task4.user.UserRepository" target="ru.aston.oshchepkov_aa.task4.DaoDataEntityLayer" relationship="INTERFACE_GENERALIZATION">
+      <point x="1.1235403644604958E-4" y="-14.000265822784968" />
+      <point x="-2082.055" y="-1541.0" />
+      <point x="-2564.658" y="-1541.0" />
+      <point x="-1.744676687849278E-4" y="79.49973417721503" />
+    </edge>
+    <edge source="ru.aston.oshchepkov_aa.task4.DbService" target="ru.aston.oshchepkov_aa.task4.user.UserServiceImpl" relationship="CREATE">
+      <point x="146.5" y="-83.50000000000023" />
+      <point x="-2037.44852320675" y="-713.098734177215" />
+      <point x="-8.5" y="116.5" />
+    </edge>
+    <edge source="ru.aston.oshchepkov_aa.task4.DbService" target="ru.aston.oshchepkov_aa.task4.order.OrderRepositoryImpl" relationship="CREATE">
+      <point x="-146.5" y="0.0" />
+      <point x="-3195.8051123540363" y="-629.5987341772147" />
+      <point x="0.0" y="152.5" />
+    </edge>
+    <edge source="ru.aston.oshchepkov_aa.task4.order.OrderRepository" target="ru.aston.oshchepkov_aa.task4.DaoDataEntityLayer" relationship="INTERFACE_GENERALIZATION">
+      <point x="1.1235403644604958E-4" y="-55.50026582278497" />
+      <point x="-3110.805" y="-1541.0" />
+      <point x="-2564.658" y="-1541.0" />
+      <point x="-1.744676687849278E-4" y="79.49973417721503" />
+    </edge>
+    <edge source="ru.aston.oshchepkov_aa.task4.cli.command.CreateUser" target="ru.aston.oshchepkov_aa.task4.user.User" relationship="CREATE">
+      <point x="-3.375527433036041E-5" y="-80.49995358649818" />
+      <point x="-636.084" y="-509.0" />
+      <point x="-604.5" y="-509.0" />
+      <point x="-604.5" y="-836.0" />
+      <point x="-636.084" y="-836.0" />
+      <point x="-3.375527433036041E-5" y="308.4997341772149" />
+    </edge>
+    <edge source="ru.aston.oshchepkov_aa.task4.user.UserRepositoryImpl" target="ru.aston.oshchepkov_aa.task4.user.UserRepository" relationship="REALIZATION">
+      <point x="0.0" y="-116.5" />
+      <point x="-2335.44852320675" y="-1252.598734177215" />
+      <point x="-2082.0551123540363" y="-1252.598734177215" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="ru.aston.oshchepkov_aa.task4.user.UserServiceImpl" target="ru.aston.oshchepkov_aa.task4.user.UserRepository" relationship="TO_ONE">
+      <point x="14.999523206749927" y="-116.5" />
+      <point x="68.10611235403621" y="14.0" />
+    </edge>
+    <edge source="ru.aston.oshchepkov_aa.task4.cli.command.UpdateUser" target="ru.aston.oshchepkov_aa.task4.user.User" relationship="CREATE">
+      <point x="-3.375527433036041E-5" y="-80.49995358649818" />
+      <point x="-817.084" y="-509.0" />
+      <point x="-604.5" y="-509.0" />
+      <point x="-604.5" y="-836.0" />
+      <point x="-636.084" y="-836.0" />
+      <point x="-3.375527433036041E-5" y="308.4997341772149" />
+    </edge>
+    <edge source="ru.aston.oshchepkov_aa.task4.user.UserServiceImpl" target="ru.aston.oshchepkov_aa.task4.cli.exception.ValidationException" relationship="CREATE">
+      <point x="-4.7679325007266016E-4" y="-116.50026582278497" />
+      <point x="-2028.949" y="-1230.0" />
+      <point x="-2392.555" y="-1230.0" />
+      <point x="1.1235403644604958E-4" y="79.49973417721503" />
+    </edge>
+    <edge source="ru.aston.oshchepkov_aa.task4.DbService" target="ru.aston.oshchepkov_aa.task4.user.UserRepositoryImpl" relationship="CREATE">
+      <point x="15.0" y="-236.5" />
+      <point x="8.781976744186068" y="116.5" />
+    </edge>
+    <edge source="ru.aston.oshchepkov_aa.task4.cli.command.CreateOrder" target="ru.aston.oshchepkov_aa.task4.order.Order" relationship="CREATE">
+      <point x="-6.751054866072081E-5" y="-80.49995358649818" />
+      <point x="-1191.668" y="-469.0" />
+      <point x="-995.668" y="-469.0" />
+      <point x="-995.668" y="-1080.599" />
+      <point x="107.99993248945134" y="-2.6582278496789513E-4" />
+    </edge>
+    <edge source="ru.aston.oshchepkov_aa.task4.order.OrderServiceImpl" target="ru.aston.oshchepkov_aa.task4.order.OrderService" relationship="REALIZATION">
+      <point x="83.75" y="-152.5" />
+      <point x="0.0" y="115.5" />
+    </edge>
+    <edge source="ru.aston.oshchepkov_aa.task4.DbService" target="ru.aston.oshchepkov_aa.task4.order.OrderServiceImpl" relationship="CREATE">
+      <point x="0.0" y="-236.5" />
+      <point x="-2341.666546462564" y="-946.598734177215" />
+      <point x="157.0" y="134.0" />
+    </edge>
+    <edge source="ru.aston.oshchepkov_aa.task4.user.UserServiceImpl" target="ru.aston.oshchepkov_aa.task4.user.UserService" relationship="REALIZATION">
+      <point x="122.5" y="-116.5" />
+      <point x="-81.9021317829463" y="79.5" />
+    </edge>
+    <edge source="ru.aston.oshchepkov_aa.task4.cli.command.UpdateOrder" target="ru.aston.oshchepkov_aa.task4.order.Order" relationship="CREATE">
+      <point x="-6.751054877440765E-5" y="-80.49995358649818" />
+      <point x="-1010.668" y="-469.0" />
+      <point x="-995.668" y="-469.0" />
+      <point x="-995.668" y="-1080.599" />
+      <point x="107.99993248945134" y="-2.6582278496789513E-4" />
+    </edge>
+    <edge source="ru.aston.oshchepkov_aa.task4.DbService" target="ru.aston.oshchepkov_aa.task4.user.UserService" relationship="TO_ONE">
+      <point x="146.5" y="0.0" />
+      <point x="-1824.5463914238037" y="-629.5987341772147" />
+      <point x="0.0" y="79.5" />
+    </edge>
+    <edge source="ru.aston.oshchepkov_aa.task4.order.OrderServiceImpl" target="ru.aston.oshchepkov_aa.task4.cli.exception.ValidationException" relationship="CREATE">
+      <point x="157.00011235403645" y="-2.6582278496789513E-4" />
+      <point x="-2612.449" y="-1080.599" />
+      <point x="-2612.449" y="-1230.0" />
+      <point x="-2392.555" y="-1230.0" />
+      <point x="1.1235403644604958E-4" y="79.49973417721503" />
+    </edge>
+    <edge source="ru.aston.oshchepkov_aa.task4.user.UserMapper" target="ru.aston.oshchepkov_aa.task4.user.User" relationship="CREATE">
+      <point x="4.135021093816249E-4" y="-44.00026582278508" />
+      <point x="-438.85" y="-836.0" />
+      <point x="-636.084" y="-836.0" />
+      <point x="-3.375527433036041E-5" y="308.4997341772149" />
+    </edge>
+    <edge source="ru.aston.oshchepkov_aa.task4.order.OrderServiceImpl" target="ru.aston.oshchepkov_aa.task4.order.OrderRepository" relationship="TO_ONE">
+      <point x="-149.5" y="-152.5" />
+      <point x="102.0" y="55.5" />
+    </edge>
+    <edge source="ru.aston.oshchepkov_aa.task4.order.OrderMapper" target="ru.aston.oshchepkov_aa.task4.order.Order" relationship="CREATE">
+      <point x="133.49993248945134" y="-2.6582278508158197E-4" />
+      <point x="-1052.5" y="-749.599" />
+      <point x="-1052.5" y="-469.0" />
+      <point x="-995.668" y="-469.0" />
+      <point x="-995.668" y="-1080.599" />
+      <point x="107.99993248945134" y="-2.6582278496789513E-4" />
+    </edge>
+    <edge source="ru.aston.oshchepkov_aa.task4.DbService" target="ru.aston.oshchepkov_aa.task4.order.OrderService" relationship="TO_ONE">
+      <point x="-146.5" y="-15.0" />
+      <point x="-2684.8051123540363" y="-644.5987341772147" />
+      <point x="90.75" y="115.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.35150602409638554" showDependencies="true" x="-1696.0" y="-922.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
