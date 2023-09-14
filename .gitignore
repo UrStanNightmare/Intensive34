@@ -4,6 +4,7 @@ target/
 !**/src/test/**/target/
 
 task1doc/
+db/
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
