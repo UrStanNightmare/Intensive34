@@ -133,6 +133,55 @@ class StreamApiTests {
 
     @Test
     @DisplayName(
+            "Собрать числа в Stream в список сумм цифр каждого числа." +
+                    "Лаконичная версия."
+    )
+    void test6_laconically_way() {
+        var n = IntStream.of(2222, 1456, 1234, 5678, 9000, 9)
+                .boxed()
+                .map(integer -> integer.toString()
+                        .chars()
+                        .mapToObj(Character::getNumericValue)
+                        .reduce(0, Integer::sum))
+                .toList();
+        log.info("{}", n);
+    }
+
+    @Test
+    void measure_test_6_time_difference(){
+        var maxRepeats = 1000;
+        var sum = 0L;
+        var ts = 0L;
+
+        var commonWayAvg = 0F;
+        var laconicallyWayAvg = 0F;
+
+        for (var i = 0; i < maxRepeats; i++){
+            ts = System.currentTimeMillis();
+            test6_laconically_way();
+            ts = System.currentTimeMillis() - ts;
+            sum += ts;
+        }
+        laconicallyWayAvg = sum / (float) maxRepeats;
+
+        sum = 0L;
+        for (var i = 0; i < maxRepeats; i++){
+            ts = System.currentTimeMillis();
+            test6();
+            ts = System.currentTimeMillis() - ts;
+            sum += ts;
+        }
+        commonWayAvg = sum / (float) maxRepeats;
+
+        log.info("Common way.");
+        log.info("Avg: {} ms", commonWayAvg);
+
+        log.info("Laconically way.");
+        log.info("Avg: {} ms", laconicallyWayAvg);
+    }
+
+    @Test
+    @DisplayName(
             "Соберите слова в Stream в один текст, где каждое слово начинается с большой буквы и выведите результат."
     )
     void test7() {
@@ -189,6 +238,5 @@ class StreamApiTests {
                 .map(v -> v * 2)
                 .limit(10)
                 .forEach(v -> log.info("{}", v));
-        ;
     }
 }
