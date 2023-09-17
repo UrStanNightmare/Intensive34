@@ -138,8 +138,7 @@ class StreamApiTests {
     )
     void test6_laconically_way() {
         var n = IntStream.of(2222, 1456, 1234, 5678, 9000, 9)
-                .boxed()
-                .map(integer -> integer.toString()
+                .mapToObj(integer -> String.valueOf(integer)
                         .chars()
                         .mapToObj(Character::getNumericValue)
                         .reduce(0, Integer::sum))
